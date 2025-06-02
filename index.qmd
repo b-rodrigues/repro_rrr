@@ -31,26 +31,26 @@ Code disponible ici : [https://github.com/b-rodrigues/repro_rrr](https://github.
 
 ## Ce dont je vais parler
 
-- Identifier *ce* qui doit être maîtrisé pour garantir la reproductibilité 
+- Identifier *ce* qui doit être maîtrisé pour garantir la reproductibilité
   (capacité à retrouver *exactement* les mêmes résultats à partir d’une analyse)
 - Présenter brièvement Nix, `{rix}` et `{rixpress}`
 
 ## Solutions disponibles pour R (1/2)
 
 - `{renv}` ou `{groundhog}`: simple à utiliser, mais:
-  - Ne sauvegarde pas la version de R  
-  - L’installation d’anciens packages peut échouer (dépendances système)  
+  - Ne sauvegarde pas la version de R
+  - L’installation d’anciens packages peut échouer (dépendances système)
 
-- Docker permet d’aller plus loin :  
-  - Gère R *et* les dépendances système  
-  - Utilise des images immuables et partageables  
+- Docker permet d’aller plus loin :
+  - Gère R *et* les dépendances système
+  - Utilise des images immuables et partageables
   - Conteneurs exécutables n'importe ou
 
 ## Solutions disponibles pour R (2/2)
 
-- Limites de Docker :  
-  - Courbe d’apprentissage (connaissances Linux recommandées)  
-  - N'est pas conçu à l'origine pour la reproductibilité  
+- Limites de Docker :
+  - Courbe d’apprentissage (connaissances Linux recommandées)
+  - N'est pas conçu à l'origine pour la reproductibilité
   - À voir : [Rocker](https://rocker-project.org/images/versioned/r-ver.html)
 
 ## Le gestionnaire de paquets Nix (1/2)
@@ -143,10 +143,11 @@ renv2nix(
 
 ## Pipelines polyglottes avec `{rixpress}`
 
-- `{rixpress}` permet d'enchaîner des étapes de traitement en R **et** Python  
-- Utilise `{rix}` pour créer un environnement reproductible (via Nix) d’exécution de la pipeline 
-- Chaque étape de pipeline est une **dérivation Nix**  
-- Transfert de données : automatique via `reticulate` ou format universel (JSON)  
+- `{rixpress}` permet d'enchaîner des étapes de traitement en R **et** Python
+- Utilise `{rix}` pour créer un environnement reproductible (via Nix)
+  d’exécution de la pipeline
+- Chaque étape de pipeline est une **dérivation Nix**
+- Transfert de données : automatique via `reticulate` ou format universel (JSON)
 
 ## Un exemple de pipeline mixte
 
@@ -163,8 +164,8 @@ list(
 ) |> rixpress()
 ```
 
-- Chaque étape est nommée, typée (`py`, `r`, `r2py`, etc.)  
-- Possibilité d’ajouter des fichiers (`functions.R`, images…)  
+- Chaque étape est nommée, typée (`py`, `r`, `r2py`, etc.)
+- Possibilité d’ajouter des fichiers (`functions.R`, images…)
 
 ## Transfert avec JSON (ou autre format universel)
 
@@ -192,13 +193,13 @@ rxp_r(
 - Intégration facile de la sortie du pipeline dans un `.qmd` :
 
 ````qmd
-```{r}
+```r
 rixpress::rxp_read("mtcars_head")
 ```
 ````
 
-- Tous les objets créés peuvent être chargés dynamiquement dans le document  
-- Possibilité de transmettre des fichiers supplémentaires (`content.qmd`, images…)  
+- Tous les objets créés peuvent être chargés dynamiquement dans le document
+- Possibilité de transmettre des fichiers supplémentaires (`content.qmd`, images…)
 
 ## Pour en savoir plus:
 
