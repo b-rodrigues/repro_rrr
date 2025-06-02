@@ -98,6 +98,8 @@ rix(date = "2025-06-02",
 
 - Les fichiers `renv.lock` peuvent aussi servir de point de départ :
 
+. . .
+
 ```
 library(rix)
 
@@ -111,10 +113,11 @@ renv2nix(
 ## rix : environnements de développement reproductibles avec Nix (3/5)
 
 - Lister la version de R et les packages nécessaires
-- En option : packages système, packages depuis Github, ou packages LaTeX
-- En option : un IDE (Rstudio, Radian, VS Code ou "autre")
-- En option: une version de Python et paquets Python à inclure
-- En dev: une version de Julia et paquets Julia à inclure
+- En option : 
+    * packages système, packages depuis Github, ou packages LaTeX
+    * un IDE (Rstudio, Radian, VS Code ou "autre")
+    * une version de Python et paquets Python à inclure
+    * une version de Julia et paquets Julia à inclure
 - Travailler de manière interactive dans un environnement isolé, spécifique au
   projet et reproductible !
 
@@ -131,8 +134,7 @@ renv2nix(
 
 - Peut installer des versions spécifiques de packages (écrire `"dplyr@1.0.0"`)
 - Peut installer des packages hébergés sur Github
-- De nombreux exemples pour démarrer ! [Voir
-  ici](https://docs.ropensci.org/rix/articles/)
+- De nombreuses vignettes pour démarrer ! [Voir ici](https://docs.ropensci.org/rix/articles/)
 
 ## Démonstration
 
@@ -172,6 +174,8 @@ list(
 - Avantage : évite d’utiliser `reticulate`
 - Ajouter une fonction de sérialisation Python :
 
+. . .
+
 ```python
 def serialize_to_json(pl_df, path):
     with open(path, 'w') as f:
@@ -179,6 +183,8 @@ def serialize_to_json(pl_df, path):
 ```
 
 - Et côté R :
+
+. . .
 
 ```r
 rxp_r(
@@ -192,11 +198,15 @@ rxp_r(
 
 - Intégration facile de la sortie du pipeline dans un `.qmd` :
 
+. . .
+
 ````qmd
 ```r
 rixpress::rxp_read("mtcars_head")
 ```
 ````
+
+. . .
 
 - Tous les objets créés peuvent être chargés dynamiquement dans le document
 - Possibilité de transmettre des fichiers supplémentaires (`content.qmd`, images…)
