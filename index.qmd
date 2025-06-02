@@ -191,11 +191,11 @@ rxp_r(
 
 - Intégration facile de la sortie du pipeline dans un `.qmd` :
 
-```qmd
+````qmd
 ```{r}
 rixpress::rxp_read("mtcars_head")
 ```
-```
+````
 
 - Tous les objets créés peuvent être chargés dynamiquement dans le document  
 - Possibilité de transmettre des fichiers supplémentaires (`content.qmd`, images…)  
