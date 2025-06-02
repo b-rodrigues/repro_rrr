@@ -25,83 +25,33 @@ Recherche et de l’Enseignement supérieur au Luxembourg
 ## Intro : Qui suis-je
 
 Diapositives disponibles en ligne :
-[https://b-rodrigues.github.io/repro_univ_eiffel](https://b-rodrigues.github.io/repro_univ_eiffel)
+[https://b-rodrigues.github.io/repro_rrr](https://b-rodrigues.github.io/repro_rrr)
 
-Code disponible ici : [https://github.com/b-rodrigues/repro_univ_eiffel](https://github.com/b-rodrigues/repro_univ_eiffel)
+Code disponible ici : [https://github.com/b-rodrigues/repro_rrr](https://github.com/b-rodrigues/repro_rrr)
 
 ## Ce dont je vais parler
 
-- Identifier *ce* qui doit être maîtrisé pour garantir la reproductibilité
-- Présenter brièvement {rix} et Nix
+- Identifier *ce* qui doit être maîtrisé pour garantir la reproductibilité 
+  (capacité à retrouver *exactement* les mêmes résultats à partir d’une analyse)
+- Présenter brièvement Nix, `{rix}` et `{rixpress}`
 
-## Ce que j’entends par *reproductibilité*
+## Solutions disponibles pour R (1/2)
 
-- Capacité à retrouver *exactement* les mêmes résultats à partir d’une analyse
+- `{renv}` ou `{groundhog}`: simple à utiliser, mais:
+  - Ne sauvegarde pas la version de R  
+  - L’installation d’anciens packages peut échouer (dépendances système)  
 
-## Rendre notre analyse reproductible
+- Docker permet d’aller plus loin :  
+  - Gère R *et* les dépendances système  
+  - Utilise des images immuables et partageables  
+  - Conteneurs exécutables n'importe ou
 
-Nous devons répondre à ces questions
+## Solutions disponibles pour R (2/2)
 
-. . .
-
-1. Est-ce facile pour une autre personne de relancer l’analyse ?
-2. Est-ce facile de mettre à jour le projet ?
-3. Est-ce facile de réutiliser ce code dans un autre projet ?
-4. Quelles garanties avons-nous que le résultat reste stable dans le temps ?
-
-## La reproductibilité est un continuum (1/2)
-
-Voici les 4 principaux facteurs qui influencent la reproductibilité d’une
-analyse :
-
-- Version de R utilisée
-- Versions des packages utilisés
-- Système d’exploitation
-- Matériel
-
-## La reproductibilité est un continuum (2/2)
-
-![](images/repro_spectrum.png){fig-align="center"}
-
-Source : Peng, Roger D. 2011. "Reproducible Research in Computational Science."
-Science 334 (6060): 1226--27
-
-## Enregistrer les packages avec {renv} 1/2
-
-Le package le plus populaire pour la reproductibilité, et très simple
-d’utilisation :
-
-- Ouvrir une session R dans le dossier contenant les scripts
-- Exécuter `renv::init()` et vérifier la présence du fichier `renv.lock`
-
-## Enregistrer les packages avec {renv} 2/2
-
-- Mais :
-
-1. Enregistre mais ne restaure pas la version de R
-2. L’installation de vieux packages peut échouer (à cause de dépendances système
-   manquantes)
-
-## Aller plus loin avec Docker : gérer R et les dépendances système
-
-- Docker est un outil de conteneurisation à installer sur votre ordinateur
-- Docker permet de créer des *images* et d’exécuter des *conteneurs* (un
-  conteneur est une instance d’une image)
-- Les images Docker :
-    1. contiennent tous les logiciels et le code nécessaires à votre projet
-    2. sont immuables (ne peuvent pas être modifiées à l’exécution)
-    3. peuvent être partagées en ligne ou hors ligne
-
-## Docker : une panacée ?
-
-- Docker est très utile et largement utilisé
-- Mais le coût d’entrée est élevé (une certaine familiarité avec Linux est
-  recommandée)
-- Point de défaillance unique (que se passe-t-il si Docker est racheté,
-  abandonné, etc. ? **peu probable néanmoins**)
-- Ne traite pas directement de la reproductibilité, on "détourne" son usage
-- Au fait, jetez un œil au projet
-  [Rocker](https://rocker-project.org/images/versioned/r-ver.html)
+- Limites de Docker :  
+  - Courbe d’apprentissage (connaissances Linux recommandées)  
+  - N'est pas conçu à l'origine pour la reproductibilité  
+  - À voir : [Rocker](https://rocker-project.org/images/versioned/r-ver.html)
 
 ## Le gestionnaire de paquets Nix (1/2)
 
@@ -135,7 +85,7 @@ Un gestionnaire de paquets populaire :
 ```{r, eval = FALSE}
 library(rix)
 
-rix(date = "2025-01-27",
+rix(date = "2025-06-02",
     r_pkgs = c("dplyr", "ggplot2"),
     system_pkgs = NULL,
     git_pkgs = NULL,
@@ -147,8 +97,6 @@ rix(date = "2025-01-27",
 ## rix : environnements de développement reproductibles avec Nix (2/5)
 
 - Les fichiers `renv.lock` peuvent aussi servir de point de départ :
-
-. . .
 
 ```
 library(rix)
@@ -165,6 +113,8 @@ renv2nix(
 - Lister la version de R et les packages nécessaires
 - En option : packages système, packages depuis Github, ou packages LaTeX
 - En option : un IDE (Rstudio, Radian, VS Code ou "autre")
+- En option: une version de Python et paquets Python à inclure
+- En dev: une version de Julia et paquets Julia à inclure
 - Travailler de manière interactive dans un environnement isolé, spécifique au
   projet et reproductible !
 
@@ -184,48 +134,11 @@ renv2nix(
 - De nombreux exemples pour démarrer ! [Voir
   ici](https://docs.ropensci.org/rix/articles/)
 
-. . .
+## Démonstration
 
-Jetons un œil à `scripts/nix_expressions/rix_intro/`
-
-## Utilisation non interactive
-
-- `{rix}` facilite l’exécution de pipelines dans le bon environnement
-- Petite remarque : le meilleur outil pour construire des pipelines en R est
-  `{targets}` (et peut-être bientôt
-  [rixpress](https://b-rodrigues.github.io/rixpress/)
-- Voir `scripts/nix_expressions/nix_targets_pipeline`
-- Il est aussi possible d’exécuter le pipeline comme ceci :
-
-. . .
-
-```
-cd /chemin/absolu/vers/le/pipeline/ && nix-shell default.nix --run "Rscript -e 'targets::tar_make()'"
-```
-
-## Nix et Github Actions : exécuter des pipelines
-
-- Il est facile d’exécuter un pipeline `{targets}` sur Github Actions
-- Il suffit de lancer `rix::tar_nix_ga()` pour générer les fichiers nécessaires
-- Committez, poussez, et regardez les actions s’exécuter !
-- Voir [ici](https://github.com/b-rodrigues/nix_targets_pipeline/tree/master)
-
-## Nix et Github Actions : écrire des articles
-
-- La collaboration sur des articles devient facile également
-- Voir [ici](https://github.com/b-rodrigues/rix_paper/tree/master)
-- Concentrez-vous juste sur l’écriture !
-
-## Conclusion
-
-- Sujet vaste et complexe !
-- À minima, générez un fichier `renv.lock`
-- Il est toujours possible de reconstruire une image Docker plus tard (vous, ou
-  quelqu’un d’autre !)
-- Pensez à utiliser `{targets}` : excellent pour la reproductibilité, et outil
-  formidable en général
-- Pour une reproductibilité à long terme : Docker ou Nix (mieux : les deux !),
-  avec un effort de maintenance nécessaire
+- Base: `scripts/nix_expressions/rix_intro/`
+- Nix et `{targets}`: `scripts/nix_expressions/nix_targets_pipeline`
+- GitHub Actions: [voir ici](https://github.com/b-rodrigues/rix_paper/tree/master)
 
 ## Fin
 
