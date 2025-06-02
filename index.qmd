@@ -139,6 +139,72 @@ renv2nix(
 - Base: `scripts/nix_expressions/rix_intro/`
 - Nix et `{targets}`: `scripts/nix_expressions/nix_targets_pipeline`
 - GitHub Actions: [voir ici](https://github.com/b-rodrigues/rix_paper/tree/master)
+- Nix et Docker: `scripts/nix_expressions/docker/`
+
+## Pipelines polyglottes avec `{rixpress}`
+
+- `{rixpress}` permet d'enchaîner des étapes de traitement en R **et** Python  
+- Utilise `{rix}` pour créer un environnement reproductible (via Nix) d’exécution de la pipeline 
+- Chaque étape de pipeline est une **dérivation Nix**  
+- Transfert de données : automatique via `reticulate` ou format universel (JSON)  
+
+## Un exemple de pipeline mixte
+
+```r
+list(
+  rxp_py_file(…),    # Lire un CSV avec Python
+  rxp_py(…),         # Filtrer avec Polars
+  rxp_py2r(…),       # Transfert Python → R
+  rxp_r(…),          # Transformation en R
+  rxp_r2py(…),       # Transfert R → Python
+  rxp_py(…),         # Autre étape Python
+  rxp_py2r(…),       # Retour vers R
+  rxp_r(…)           # Étape finale
+) |> rixpress()
+```
+
+- Chaque étape est nommée, typée (`py`, `r`, `r2py`, etc.)  
+- Possibilité d’ajouter des fichiers (`functions.R`, images…)  
+
+## Transfert avec JSON (ou autre format universel)
+
+- Avantage : évite d’utiliser `reticulate`
+- Ajouter une fonction de sérialisation Python :
+
+```python
+def serialize_to_json(pl_df, path):
+    with open(path, 'w') as f:
+        f.write(pl_df.write_json())
+```
+
+- Et côté R :
+
+```r
+rxp_r(
+  name = "x",
+  expr = my_fun(data),
+  unserialize_function = "jsonlite::fromJSON"
+)
+```
+
+## Génération de documents (Quarto ou Rmd)
+
+- Intégration facile de la sortie du pipeline dans un `.qmd` :
+
+```qmd
+```{r}
+rixpress::rxp_read("mtcars_head")
+```
+```
+
+- Tous les objets créés peuvent être chargés dynamiquement dans le document  
+- Possibilité de transmettre des fichiers supplémentaires (`content.qmd`, images…)  
+
+## Pour en savoir plus:
+
+- [Repository GitHub](https://github.com/b-rodrigues/rixpress)
+- [Site web](https://b-rodrigues.github.io/rixpress/)
+- [Repository d’exemples](https://github.com/b-rodrigues/rixpress_demos)
 
 ## Fin
 
