@@ -25,9 +25,12 @@ Recherche et de l’Enseignement supérieur au Luxembourg
 ## Intro : Qui suis-je
 
 Diapositives disponibles en ligne :
+
 [https://b-rodrigues.github.io/repro_rrr](https://b-rodrigues.github.io/repro_rrr)
 
-Code disponible ici : [https://github.com/b-rodrigues/repro_rrr](https://github.com/b-rodrigues/repro_rrr)
+Code disponible ici :
+
+[https://github.com/b-rodrigues/repro_rrr](https://github.com/b-rodrigues/repro_rrr)
 
 ## Ce dont je vais parler
 
