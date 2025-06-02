@@ -100,7 +100,7 @@ rix(date = "2025-06-02",
 
 . . .
 
-```
+```{r, eval = FALSE}
 library(rix)
 
 renv2nix(
@@ -113,13 +113,11 @@ renv2nix(
 ## rix : environnements de développement reproductibles avec Nix (3/5)
 
 - Lister la version de R et les packages nécessaires
-- En option : 
-    * packages système, packages depuis Github, ou packages LaTeX
+- En option :
+    * packages système, packages depuis GitHub, ou packages LaTeX
     * un IDE (Rstudio, Radian, VS Code ou "autre")
     * une version de Python et paquets Python à inclure
     * une version de Julia et paquets Julia à inclure
-- Travailler de manière interactive dans un environnement isolé, spécifique au
-  projet et reproductible !
 
 ## rix : environnements de développement reproductibles avec Nix (4/5)
 
