@@ -222,11 +222,12 @@ rixpress::rxp_read("mtcars_head")
 Contactez-moi si vous avez des questions :
 
 - bruno@brodrigues.co
-- Twitter : @brodriguesco
-- Mastodon : @brodriguesco@fosstodon.org
-- Blog : www.brodrigues.co
-- Livre : www.raps-with-r.dev
-- rix : https://docs.ropensci.org/rix
+- Twitter : [@brodriguesco](https://x.com/brodriguesco)
+- Mastodon : [@brodriguesco@fosstodon.org](https://fosstodon.org/@brodriguesco)
+- Blog : [www.brodrigues.co](https://brodrigues.co/)
+- Livre : [www.raps-with-r.dev](https://raps-with-r.dev/)
+- rix : [https://docs.ropensci.org/rix](https://docs.ropensci.org/rix)
+- rixpress : [https://b-rodrigues.github.io/rixpress/](https://b-rodrigues.github.io/rixpress/)
 
 . . .
 
