@@ -1,8 +1,14 @@
 library(rix)
 
 rix(
-  date = "2025-04-14",
-  r_pkgs = c("chronicler", "dplyr", "igraph", "reticulate", "quarto"),
+  date = "2025-06-02",
+  r_pkgs = c(
+    "chronicler",
+    "dplyr",
+    "igraph",
+    "reticulate",
+    "quarto"
+  ),
   git_pkgs = list(
     list(
       package_name = "rix",
@@ -16,8 +22,12 @@ rix(
     )
   ),
   py_conf = list(
-    py_version = "3.12",
-    py_pkgs = c("pandas", "polars", "pyarrow")
+    py_version = "3.13",
+    py_pkgs = c(
+      "pandas",
+      "polars",
+      "pyarrow"
+    )
   ),
   ide = "none",
   project_path = ".",
