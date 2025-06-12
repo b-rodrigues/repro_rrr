@@ -10,7 +10,7 @@ list(
 
   rxp_py(
     name = mtcars_pl_am,
-    py_expr = "mtcars_pl.filter(polars.col('am') == 1)",
+    py_expr = "mtcars_pl.filter(polars.col('am') == 0)",
     additional_files = "functions.py",
     serialize_function = "write_to_csv"
   ),
