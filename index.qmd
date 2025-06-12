@@ -42,14 +42,15 @@ Code disponible ici :
 
 ## Solutions disponibles pour R
 
-- `{renv}` ou `{groundhog}`: simple à utiliser, mais:
+- `{renv}` ou `{groundhog}`: simple à utiliser, mais :
   - Ne sauvegarde pas la version de R
   - L’installation d’anciens packages peut échouer (dépendances système)
 
 - Docker permet d’aller plus loin :
   - Gère R *et* les dépendances système
-  - Utilise des images immuables et partageables
-  - Conteneurs exécutables n'importe ou
+  - Conteneurs exécutables n'importe où
+- Mais :
+  - N’est en soi pas reproductible
 
 ## Le gestionnaire de paquets Nix (1/2)
 
