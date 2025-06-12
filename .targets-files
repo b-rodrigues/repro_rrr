@@ -69,6 +69,7 @@
 .quarto/xref/1089494f
 .quarto/xref/186f9729
 .quarto/xref/20a5c63c
+.quarto/xref/22e5ace4
 .quarto/xref/24395b6a
 .quarto/xref/2f506fae
 .quarto/xref/3cd61465
@@ -85,6 +86,7 @@
 .quarto/xref/9b92108d
 .quarto/xref/INDEX
 .quarto/xref/ac78c0c9
+.quarto/xref/b5e42f98
 .quarto/xref/b61b7c2b
 .quarto/xref/b89497e9
 .quarto/xref/c7af8519
@@ -168,6 +170,8 @@ _targets/meta/meta
 _targets/meta/process
 _targets/meta/progress
 _targets/objects/pres_change
+docs/images/repro_puzzle.png
+docs/images/repro_puzzle_nix.png
 result
 docs/index.html
 docs/index.pptx

@@ -18,11 +18,7 @@ execute:
 Bruno Rodrigues, responsable du département de statistique au Ministère de la
 Recherche et de l’Enseignement supérieur au Luxembourg
 
-## Intro : Qui suis-je
-
-![](images/luxembourg.png){fig-align="center"}
-
-## Intro : Qui suis-je
+## Intro : Contenu
 
 Diapositives disponibles en ligne :
 
@@ -34,11 +30,17 @@ Code disponible ici :
 
 ## Ce dont je vais parler
 
-- Identifier *ce* qui doit être maîtrisé pour garantir la reproductibilité
-  (capacité à retrouver *exactement* les mêmes résultats à partir d’une analyse)
-- Présenter brièvement Nix, `{rix}` et `{rixpress}`
+- Le puzzle que vous connaissez:
 
-## Solutions disponibles pour R (1/2)
+![](images/repro_puzzle.png){fig-align="center"}
+
+## Ce dont je vais parler
+
+- Le puzzle avec Nix:
+
+![](images/repro_puzzle_nix.png){fig-align="center"}
+
+## Solutions disponibles pour R
 
 - `{renv}` ou `{groundhog}`: simple à utiliser, mais:
   - Ne sauvegarde pas la version de R
@@ -48,13 +50,6 @@ Code disponible ici :
   - Gère R *et* les dépendances système
   - Utilise des images immuables et partageables
   - Conteneurs exécutables n'importe ou
-
-## Solutions disponibles pour R (2/2)
-
-- Limites de Docker :
-  - Courbe d’apprentissage (connaissances Linux recommandées)
-  - N'est pas conçu à l'origine pour la reproductibilité
-  - À voir : [Rocker](https://rocker-project.org/images/versioned/r-ver.html)
 
 ## Le gestionnaire de paquets Nix (1/2)
 
@@ -139,10 +134,12 @@ renv2nix(
 
 ## Démonstration
 
-- Base: `scripts/nix_expressions/rix_intro/`
-- Nix et `{targets}`: `scripts/nix_expressions/nix_targets_pipeline`
+- Les bases : `scripts/nix_expressions/01_rix_intro/`
+- Vs Code/Positron natifs sur Windows: `scripts/nix_expressions/02_native_vscode_example/`
+- Nix et `{targets}`: `scripts/nix_expressions/03_nix_targets_pipeline`
+- Nix et Docker: `scripts/nix_expressions/04_docker/`
+- Nix et `{shiny}`: `scripts/nix_expressions/05_shiny`
 - GitHub Actions: [voir ici](https://github.com/b-rodrigues/rix_paper/tree/master)
-- Nix et Docker: `scripts/nix_expressions/docker/`
 
 ## Pipelines polyglottes avec `{rixpress}`
 
@@ -211,6 +208,10 @@ rixpress::rxp_read("mtcars_head")
 
 - Tous les objets créés peuvent être chargés dynamiquement dans le document
 - Possibilité de transmettre des fichiers supplémentaires (`content.qmd`, images…)
+
+## Démo interactive
+
+Voir `scripts/rixpress_demo`
 
 ## Pour en savoir plus:
 
