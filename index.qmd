@@ -30,13 +30,13 @@ Code disponible ici :
 
 ## Ce dont je vais parler
 
-- Le puzzle que vous connaissez:
+Le puzzle que vous connaissez:
 
 ![](images/repro_puzzle.png){fig-align="center"}
 
 ## Ce dont je vais parler
 
-- Le puzzle avec Nix:
+Le puzzle avec Nix:
 
 ![](images/repro_puzzle_nix.png){fig-align="center"}
 
@@ -84,7 +84,7 @@ Un gestionnaire de paquets populaire :
 ```{r, eval = FALSE}
 library(rix)
 
-rix(date = "2025-06-02",
+rix(date = "2025-06-13",
     r_pkgs = c("dplyr", "ggplot2"),
     system_pkgs = NULL,
     git_pkgs = NULL,
